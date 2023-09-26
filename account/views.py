@@ -36,7 +36,7 @@ class UserRegisterationView(APIView):
             if serializer.is_valid(raise_exception=True):
                   user = serializer.save()
                   user.set_password(request.data['password'])
-                  user.save
+                  user.save()
                   #token = get_tokens_for_user(user)
                   #access_token = token['access']
                   #refresh_token = token['refresh']
@@ -49,16 +49,7 @@ class UserRegisterationView(APIView):
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
             
             #return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
-  def  get(self, request, format=None):
-        # Render the signup.html template for GET requests
-        return render(request, 'signup.html')
   
-def registration(request):
-    return render(request, 'signup.html')
-    
-
-def login1(request):
-    return render(request, 'login.html')
 
 
 class UserLoginView(APIView):
@@ -84,10 +75,7 @@ class UserLoginView(APIView):
 
              return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST) 
       
-      def  get(self, request, format=None):
-        # Render the signup.html template for GET requests
-        return render(request, 'login.html')
-
+     
 
 
 class UserProfileView(APIView):
