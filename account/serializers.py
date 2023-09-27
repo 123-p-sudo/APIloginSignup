@@ -1,4 +1,5 @@
-from xml.dom import ValidationErr
+
+import attrs
 from rest_framework import serializers
 from account.models import User
 from django.utils.encoding import smart_str, force_bytes,DjangoUnicodeDecodeError
@@ -15,12 +16,12 @@ class UserRegisterationSerializer(serializers.ModelSerializer):
         }
 
       #validate password and confirm password 
-    def  validate(self,data):
-        password = data.get('password')
-        password2 = data.get('password2')
+    def  validate(self,attrs):
+        password = attrs.get('password')
+        password2 = attrs.get('password2')
         if password != password2:
             raise serializers.ValidationError('Password and confirm password does not match')
-        return data
+        return attrs
     
     def create(self,validate_data):
         return User.objects.create_user(**validate_data)

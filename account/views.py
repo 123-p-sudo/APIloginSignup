@@ -32,7 +32,7 @@ class UserRegisterationView(APIView):
   renderer_classes = [UserRenderer]
 
   def post(self,request,format=None):
-            serializer = UserRegisterationSerializer(data=request.POST)
+            serializer = UserRegisterationSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
                   user = serializer.save()
                   user.set_password(request.data['password'])
@@ -55,7 +55,7 @@ class UserRegisterationView(APIView):
 class UserLoginView(APIView):
       renderer_classes = [UserRenderer]
       def post(self,request,format=None):
-             serializer = UserLoginSerializer(data = request.POST)
+             serializer = UserLoginSerializer(data = request.data)
              if serializer.is_valid(raise_exception=True):
                    email = serializer.data.get('email')
                    password = serializer.data.get('password')
