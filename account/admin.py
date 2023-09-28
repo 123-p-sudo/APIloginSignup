@@ -1,5 +1,5 @@
 from django.contrib import admin
-from account.models import User
+from account.models import User,Leave
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 
@@ -37,3 +37,7 @@ class UserModelAdmin(BaseUserAdmin):
 
 # Now register the new UserAdmin...
 admin.site.register(User, UserModelAdmin)
+
+class LeaveAdmin(admin.ModelAdmin):
+    list_display=('leave_type','leave_from','reason','leave_till')
+admin.site.register(Leave,LeaveAdmin)

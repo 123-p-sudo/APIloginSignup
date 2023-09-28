@@ -1,7 +1,7 @@
 
 import attrs
 from rest_framework import serializers
-from account.models import User
+from account.models import User,Leave
 from django.utils.encoding import smart_str, force_bytes,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 #from django.contrib.auth.tokens import PasswordResetTokenGenerator
@@ -38,6 +38,21 @@ class  UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id','email','name']  
+
+
+
+class LeaveViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Leave
+        fields=['leave_type','leave_from','leave_till','reason']
+
+        def validate(self,attrs):
+            return attrs
+
+        
+
+        def create(self,valiadte_data):
+            return Leave.objects.create_user(**valiadte_data)        
 
 
 

@@ -73,9 +73,17 @@ class User(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
+    
+
 
     @property
     def is_staff(self):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+    
+class Leave(models.Model):
+    leave_type=models.CharField(max_length=50)
+    leave_from=models.DateField()
+    leave_till =models.DateField()
+    reason = models.TextField()      
