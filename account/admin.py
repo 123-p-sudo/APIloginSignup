@@ -39,5 +39,5 @@ class UserModelAdmin(BaseUserAdmin):
 admin.site.register(User, UserModelAdmin)
 
 class LeaveAdmin(admin.ModelAdmin):
-    list_display=('leave_type','leave_from','reason','leave_till')
+    list_display=('leave_type','leave_from','leave_till','reason')
 admin.site.register(Leave,LeaveAdmin)
